@@ -6,27 +6,48 @@ void merge(int a[],int l,int m, int r){
     int leftsize = m-l+1, rightsize=r-m;
     int left[leftsize], right[rightsize];
 
-    for (int i = l; i <= m; i++)
-    {
+    
+    for (int i = l; i <= m; i++){
         left[i]=a[i];
     }
+
     int k=0;
-    for (int i = m+1; i <= r; i++)
+    for (int i = m+1; i <=r; i++)
     {
         right[k]=a[i];
         k++;
     }
-    cout<<"left side: "<<endl;
-    for (int i = 0; i < leftsize; i++)
+
+    
+    int i=0,j=0, current=l;
+    while (i<leftsize && j<rightsize)
     {
-        cout<<left[i]<<" ";
+        if(left[i]<=right[j]){
+            a[current]=left[i];
+            i++;
+        }
+        else{
+            a[current]=right[j];
+            j++;
+        }
+        current++;
     }
-    cout<<endl<<"right side: "<<endl;
-    for (int i = 0; i < rightsize; i++)
+  
+    while (i<leftsize)
     {
-        cout<<right[i]<<" ";
+        a[current]=left[i];
+        i++;
+        current++;
     }
-    cout<<endl;
+    
+
+    while (j<rightsize)
+    {
+        a[current]=right[j];
+        j++;
+        current++;
+    }
+    
 
     
 }
@@ -37,7 +58,9 @@ int n;cin>>n;
 int a[n];
 for(int i=0;i<n;i++)cin>>a[i];
 merge(a,0,3,n-1);
-for(int i=0;i<n;i++)cout<<a[i]<<" ";
 
+for(int f=0;f<n;f++)cout<<a[f]<<" ";
 
 }
+
+
